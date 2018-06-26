@@ -45,31 +45,34 @@ public class Window {
         this.iconSize = iconSize;
     }
     
-    public void addRegion(int x1, int y1, int x2, int y2) {
-        regions.add(new Region(new Vector(x1, y1), new Vector(x2, y2), regionIndex));
+    public Region addRegion(int x1, int y1, int x2, int y2) {
+        Region region = new Region(new Vector(x1, y1), new Vector(x2, y2), regionIndex);
+        regions.add(region);
         ++regionIndex;
+        return region;
     }
     
     public void removeRegion(Region region) {
         regions.remove(region);
     }
     
-    public void addIcon(int x, int y) {
-        icons.add(new Icon(new Vector(x,y), iconIndex));
+    public Icon addIcon(int x, int y) {
+        Icon icon = new Icon(new Vector(x,y), iconIndex);
+        icons.add(icon);
         ++iconIndex;
+        return icon;
     }
     
     public void removeIcon(Icon icon) {
         icons.remove(icon);
     }
     
-    public void addClick(int x, int y) {
+    public MouseClick addClick(int x, int y) {
         Vector point = new Vector(x, y);
         WindowItem selectedItem = selectItem(point);
-        clicks.add(new MouseClick(point, selectedItem));
-        //
-        //Printar selectedItem aqui
-        //
+        MouseClick click = new MouseClick(point, selectedItem);
+        clicks.add(click);
+        return click;
     }
         
     private WindowItem selectItem (Vector point) {
