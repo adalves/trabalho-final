@@ -7,13 +7,8 @@ import java.util.Date;
  * @author Ana Carolina da Rocha Santos Alves
  */
 public abstract class WindowItem {
-    protected Date creationDate;
     protected String name;
-    
-    public Date getCreationDate() {
-        return this.creationDate;
-    }
-    
+   
     public String getName() {
         return this.name;
     }

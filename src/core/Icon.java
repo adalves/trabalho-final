@@ -11,7 +11,6 @@ public class Icon extends WindowItem{
     
     public Icon (Vector center, int index) {
         this.setCenter(center);
-        this.creationDate = new Date();
         this.setName(index);
     }
 
@@ -38,6 +37,6 @@ public class Icon extends WindowItem{
         
     @Override
     public String toString() {
-        return "Ícone (" + center + "), criado em " + getCreationDate();
+        return getName() + " (" + center + ")";
     }
 }

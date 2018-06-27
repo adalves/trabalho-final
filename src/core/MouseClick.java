@@ -15,7 +15,7 @@ public class MouseClick {
     public MouseClick(Vector center, WindowItem selectedItem) {
         this.setCenter(center);
         this.selectedItem = selectedItem;
-        this.distance = this.selectedItem.distanceTo(this.center);
+        this.setDistance(selectedItem);
         this.creationDate = new Date();
     }
 
@@ -30,6 +30,12 @@ public class MouseClick {
         this.center = center;
     }
 
+    private void setDistance(WindowItem item) {
+        if (item == null) this.distance = 0;
+        else
+            this.distance = item.distanceTo(this.center);
+    }
+    
     public Date getCreationDate() {
         return creationDate;
     }
@@ -42,9 +48,17 @@ public class MouseClick {
         return distance;
     }
     
+    public String printSelectedItem() {
+        String item;
+        if (getSelectedItem() == null) item = "Nenhum item selecionado";
+        else item = getSelectedItem().getName();
+        return item;
+    }
+    
     @Override
     public String toString() {
-        return getCreationDate() + " " + getCenter() + " " + 
-                getSelectedItem().getName() + " " + getDistance();
+        
+        return getCreationDate() + "      (" + getCenter() + ")      " + 
+                printSelectedItem() + "      " + getDistance();
     }
 }

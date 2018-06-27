@@ -7,11 +7,11 @@ import java.util.ArrayList;
  */
 public class Window {
     private static Window instance = null;
-    ArrayList<Region> regions = new ArrayList();
-    int regionIndex = 0;
-    ArrayList<Icon> icons = new ArrayList();
-    int iconIndex = 0;
-    ArrayList<MouseClick> clicks = new ArrayList();
+    private ArrayList<Region> regions = new ArrayList();
+    private int regionIndex = 0;
+    private ArrayList<Icon> icons = new ArrayList();
+    private int iconIndex = 0;
+    private ArrayList<MouseClick> clicks = new ArrayList();
     private double iconSize;
     
     private Window(){}
@@ -25,11 +25,29 @@ public class Window {
     public ArrayList<Region> getRegions() {
         return regions;
     }
+    
+    public String printRegions() {
+        if (regions.isEmpty()) return "Nenhuma região registrada.\n\n";
+        String str = "Regiões: \n\n";
+        for (Region region : regions) {
+            str += region + "\n";
+        }
+        return str + "\n\n";
+    }
 
     public ArrayList<Icon> getIcons() {
         return icons;
     }
 
+    public String printIcons() {
+        if (icons.isEmpty()) return "Nenhum ícone registrado.\n\n";
+        String str = "Ícones: \n\n";
+        for (Icon icon : icons) {
+            str += icon + "\n";
+        }
+        return str + "\n\n";
+    }
+    
     public ArrayList<MouseClick> getClicks() {
         return clicks;
     }
@@ -39,9 +57,8 @@ public class Window {
     }
 
     public void setIconSize(double iconSize) {
-        if (iconSize < 0 || iconSize == 0)
-            throw new IllegalArgumentException("O tamanho dos ícones não pode "
-                                               + "ser menor ou igual a zero.");
+        if (iconSize <= 0 || iconSize >= 499)
+            throw new IllegalArgumentException("O valor deve ser maior que 0 e menor que 499.");
         this.iconSize = iconSize;
     }
     
@@ -82,8 +99,6 @@ public class Window {
         if (item == null)
             item = selectIcon(point);
         
-        if (item == null)
-            throw new IllegalArgumentException ("Nenhum item selecionado.");
         return item;
     }
     
@@ -124,7 +139,8 @@ public class Window {
     
     @Override
     public String toString() {
-        String string = "";
+        if (clicks.isEmpty()) return "Nenhum clique registrado.";
+        String string = "               Data/Hora\t   Clique   Item selecionado   Distância\n\n";
         for (MouseClick click : clicks) {
             string += click + "\n";
         }

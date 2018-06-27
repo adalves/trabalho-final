@@ -17,7 +17,6 @@ public class Region extends WindowItem{
         }
         this.setSupEsq(supEsq);
         this.setInfDir(infDir);
-        this.creationDate = new Date();
         this.setName(index);
     }
     
@@ -62,6 +61,6 @@ public class Region extends WindowItem{
     
     @Override
     public String toString() {
-        return "Região {(" + getSupEsq() + "), (" + getInfDir() + ")}, criada em " + getCreationDate();
+        return getName() + " (" + getSupEsq() + "), (" + getInfDir() + ")";
     }
 }
