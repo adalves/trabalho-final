@@ -1,7 +1,5 @@
 package core;
 
-import java.util.Date;
-
 /**
  *
  * @author Ana Carolina da Rocha Santos Alves
@@ -32,7 +30,7 @@ public class Icon extends WindowItem{
     }
     
     public double distanceTo(Vector point) {
-        return (Vector.distance(this.center, point));
+        return (center.distanceTo(point));
     }
         
     @Override

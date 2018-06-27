@@ -29,7 +29,16 @@ public class Vector implements Comparable<Vector> {
     public void setY(int y) {
         this.y = y;
     }
-
+ 
+    public double distanceTo (Vector other) {
+        double x = other.getX() - this.getX();
+        x = Math.pow(x, 2);
+        double y = other.getY() - this.getY();
+        y = Math.pow(y, 2);
+        double result = x + y;
+        return Math.sqrt(result);
+    }
+    
     public boolean lessThan (Vector other) {
         return (this.compareTo(other) < 0);
     }
@@ -57,14 +66,5 @@ public class Vector implements Comparable<Vector> {
     @Override
     public String toString() {
         return getX() + "," + getY();
-    }
-    
-    public static double distance (Vector vector1, Vector vector2) {
-        double x = vector2.getX() - vector1.getX();
-        x = Math.pow(x, 2);
-        double y = vector2.getY() - vector1.getY();
-        y = Math.pow(y, 2);
-        double result = x + y;
-        return Math.sqrt(result);
     }
 }

@@ -1,52 +1,50 @@
 package core;
 
-import java.util.Date;
-
 /**
  *
  * @author Ana Carolina da Rocha Santos Alves
  */
 public class Region extends WindowItem{
-    private Vector supEsq, infDir;
+    private Vector topLeft, bottomRight;
     
-    public Region (Vector supEsq, Vector infDir, int index) {
-        if (supEsq.moreThan(infDir)) {
-            Vector temp = supEsq;
-            supEsq = infDir;
-            infDir = temp;
+    public Region (Vector topLeft, Vector bottomRight, int index) {
+        if (topLeft.moreThan(bottomRight)) {
+            Vector temp = topLeft;
+            topLeft = bottomRight;
+            bottomRight = temp;
         }
-        this.setSupEsq(supEsq);
-        this.setInfDir(infDir);
+        this.setTopLeft(topLeft);
+        this.setBottomRight(bottomRight);
         this.setName(index);
     }
     
-    public Vector getSupEsq() {
-        return supEsq;
+    public Vector getTopLeft() {
+        return topLeft;
     }
 
-    private void setSupEsq(Vector supEsq) {
-        if (supEsq.getX() < 0 || supEsq.getY() < 0 ||
-            supEsq.getX() > 499 || supEsq.getY() > 499)
+    private void setTopLeft(Vector topLeft) {
+        if (topLeft.getX() < 0 || topLeft.getY() < 0 ||
+            topLeft.getX() > 499 || topLeft.getY() > 499)
             throw new IllegalArgumentException("Os valores devem ser entre 0 e 499.");
-        this.supEsq = supEsq;
+        this.topLeft = topLeft;
     }
 
-    public Vector getInfDir() {
-        return infDir;
+    public Vector getBottomRight() {
+        return bottomRight;
     }
 
-    private void setInfDir(Vector infDir) {
-        if (infDir.getX() < 0 || infDir.getY() < 0 ||
-            infDir.getX() > 499 || infDir.getY() > 499)
+    private void setBottomRight(Vector bottomRight) {
+        if (bottomRight.getX() < 0 || bottomRight.getY() < 0 ||
+            bottomRight.getX() > 499 || bottomRight.getY() > 499)
             throw new IllegalArgumentException("Os valores devem ser entre 0 e 499.");
-        this.infDir = infDir;
+        this.bottomRight = bottomRight;
     }
     
     public boolean contains (Vector point) {
-        return (point.getX() >= supEsq.getX() &&
-                point.getX() <= infDir.getX() &&
-                point.getY() >= supEsq.getY() &&
-                point.getY() <= infDir.getY());
+        return (point.getX() >= topLeft.getX() &&
+                point.getX() <= bottomRight.getX() &&
+                point.getY() >= topLeft.getY() &&
+                point.getY() <= bottomRight.getY());
     }
            
     protected void setName(int index) {
@@ -56,11 +54,11 @@ public class Region extends WindowItem{
     public double distanceTo(Vector point) {
         if (contains(point)) return 0;
         else
-            return (Vector.distance(supEsq, point));
+            return (topLeft.distanceTo(point));
     }
     
     @Override
     public String toString() {
-        return getName() + " (" + getSupEsq() + "), (" + getInfDir() + ")";
+        return getName() + " (" + getTopLeft() + "), (" + getBottomRight() + ")";
     }
 }

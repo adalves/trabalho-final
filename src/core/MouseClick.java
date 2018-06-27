@@ -30,6 +30,10 @@ public class MouseClick {
         this.center = center;
     }
 
+    public double getDistance() {
+        return distance;
+    }
+    
     private void setDistance(WindowItem item) {
         if (item == null) this.distance = 0;
         else
@@ -43,10 +47,6 @@ public class MouseClick {
     public WindowItem getSelectedItem() {
         return selectedItem;
     }
-
-    public double getDistance() {
-        return distance;
-    }
     
     public String printSelectedItem() {
         String item;
@@ -58,7 +58,7 @@ public class MouseClick {
     @Override
     public String toString() {
         
-        return getCreationDate() + "      (" + getCenter() + ")      " + 
-                printSelectedItem() + "      " + getDistance();
+        return String.format("%-32s%-13s%-28s%-10f", getCreationDate(), "(" + getCenter() + ")", 
+                printSelectedItem(), getDistance());//.replace(" ", "_");
     }
 }

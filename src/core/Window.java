@@ -140,7 +140,7 @@ public class Window {
     @Override
     public String toString() {
         if (clicks.isEmpty()) return "Nenhum clique registrado.";
-        String string = "               Data/Hora\t   Clique   Item selecionado   Distância\n\n";
+        String string = String.format("%-10s%-23s%-15s%-25s%-10s\n\n", " ", "Data/Hora", "Clique", "Item selecionado", "Distância");
         for (MouseClick click : clicks) {
             string += click + "\n";
         }
